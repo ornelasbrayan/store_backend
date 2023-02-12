@@ -99,10 +99,10 @@ def get_cheaper(price):
 
 @app.get("/api/cheapest")
 def get_cheapest():
-    result = []
+    result = mock_catalog[0]
     for prod in mock_catalog:
-        if prod["price"] < prod["price"]:
-            result.append(prod)
+        if prod["price"] < result["price"]:
+            result = prod
     
     return json.dumps(result)
 
