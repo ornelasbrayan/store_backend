@@ -77,9 +77,36 @@ def get_categories():
     results = []
     for prod in mock_catalog:
         cat = prod["category"]
-        
+        if cat not in results:
+            results.append(cat)
 
-    return category
+@app.get("/api/total")
+def get_total():
+    total = 0
+    for prod in mock_catalog:
+        total += prod["price"]
+    
+    return json.dumps(total)
+
+@app.get("/api/cheaper/<price>")
+def get_cheaper(price):
+    result = []
+    for prod in mock_catalog:
+        if prod["price"] < int(price):
+            result.append(prod) 
+    
+    return json.dumps(result)
+
+@app.get("/api/cheapest")
+def get_cheapest():
+    result = []
+    for prod in mock_catalog:
+        if prod["price"] < prod["price"]:
+            result.append(prod)
+    
+    return json.dumps(result)
+
+
             
 
 
