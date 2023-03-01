@@ -2,12 +2,14 @@ from flask import Flask, abort, request
 from data import me, mock_catalog
 from config import db
 from bson import ObjectId
+from flask_cors import CORS
 
 
 import json
 
 
 app = Flask(__name__) #similar to new Task in JS
+CORS(app) #WARNING: disable CORS policy
 
 
 @app.get("/")
